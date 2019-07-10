@@ -1,1 +1,10 @@
-<app-product-card></app-product-card>
+<section id="productSection">
+
+    <div class="container">
+        <div class="row">
+            <div class="product-card" *ngFor="let product of products">
+                <app-product-card [product]="product"></app-product-card>
+            </div>
+        </div>
+    </div>
+</section>

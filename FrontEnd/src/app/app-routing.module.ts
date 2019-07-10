@@ -11,7 +11,7 @@ const routes: Routes = [
     loadChildren: './my-cart/my-cart.module#MyCartModule'
   },
   {
-    path: 'product',
+    path: 'products',
     loadChildren: './product/product.module#ProductModule'
   },
   {

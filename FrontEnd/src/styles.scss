@@ -1,4 +1,272 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Montserrat", sans-serif;
+  background: #F5F7FA;
+  color: #666666;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+img {
+  max-width: 100%;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.logo {
+  flex: 1;
+}
+.search {
+  flex: 2;
+}
+.cart {
+  position: relative;
+  flex: 1;
+  font-size: 40px;
+  margin-top: 20px;
+}
+
+#cart-count-div {
+  position: absolute;
+  top: -9px;
+  font-size: 20px;
+  background: green;
+  /* padding: 0px 6px; */
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  /* letter-spacing: -6px; */
+  text-align: center;
+  color: #fff;
+  line-height: 29px;
+  left: 27px;
+}
+.col {
+  flex: 1;
+}
+
+.product-card {
+  padding: 1%;
+  flex-grow: 1;
+  flex-basis: 16%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+  align-items: center;
+}
+
+.view-details {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+  height: 100%;
+  width: 100%;
+}
+
+.view-details button {
+  padding: 14px 30px 14px;
+  background-color: transparent;
+  border: 1px solid #ff5151;
+  color: #ff5151;
+  font-weight: 500;
+  text-transform: uppercase;
+  display: inline-block;
+  line-height: 1;
+  z-index: 1;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.product-info {
+  margin-top: auto;
+}
+
+.cart-btn {
+  border: 1px solid #ffb9b9;
+  display: inline-block;
+  height: 41px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 160px;
+  border-radius: 100px;
+  outline: none;
+  background: transparent;
+  text-align: center;
+}
+.cart-btn button {
+  height: 100%;
+
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.cart-btn span {
+  cursor: pointer;
+  margin: 0 10px;
+  display: none;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  display: flex;
+}
+#close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#close:hover,
+#close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.product-name {
+  flex: 2;
+}
+.modal-img {
+  flex: 1;
+  width: 300px;
+}
+
+#cart-view-sidebar {
+  width: 28%;
+  float: left;
+}
+
+#productSection {
+  width: 100%;
+  float: left;
+}
+
+.inner-cart-body {
+  padding: 15px 0;
+}
+
+.cart-list {
+  float: left;
+  width: 100%;
+  height: 60px;
+  margin-bottom: 10px;
+  display: table;
+  border-bottom: 1px solid #eee;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.cart-list img {
+  display: table-cell;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #eee;
+}
+.cart-name-price {
+  display: table-cell;
+  vertical-align: top;
+  padding-left: 10px;
+  width: 80%;
+}
+.cart-name-price h4 {
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+  margin: 0;
+}
+.cart-name-price span {
+  font-weight: 400;
+  font-size: 15px;
+}
+.cart-name-price h4 a {
+  float: right;
+  font-weight: 400;
+  font-size: 15px;
+  margin-top: 13px;
+  color: #041531;
+}
+
+.carthome-total h5 {
+  font-size: 15px;
+  text-transform: uppercase;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+.carthome-total h5 span {
+  float: right;
+  color: #555;
+  font-weight: 400;
+}
+
+.btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #fff;
+  background-color: #343a40;
+  border-color: #343a40;
+  margin: 13px 16px;
+  cursor: pointer;
+}
+
+.title {
+  font-family: ZurichBT-Bold, "Arial Black", Gadget, sans-serif;
+  text-transform: uppercase;
+  font-weight: 100;
+  font-size: 2.4rem;
+  letter-spacing: 0;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+.sub-title {
+  font-weight: 100;
+  text-transform: uppercase;
+  font-size: 1.15rem;
+  letter-spacing: 0.05em;
+  line-height: 1.7;
+  line-height: 1;
+  background: #e44747;
+  width: 141px;
+  padding: 10px 24px;
+  text-align: center;
+  border-radius: 34px;
+  color: #fff;
+}
