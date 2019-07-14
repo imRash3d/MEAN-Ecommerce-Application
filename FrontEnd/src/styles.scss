@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import "~ngx-toastr/toastr";
 html,
 body {
   height: 100%;
@@ -8,10 +9,12 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-family: "Montserrat", sans-serif;
-  background: #F5F7FA;
+  background: #f5f7fa;
   color: #666666;
 }
-
+a {
+  text-decoration: none;
+}
 img {
   max-width: 100%;
 }
@@ -269,4 +272,170 @@ img {
   text-align: center;
   border-radius: 34px;
   color: #fff;
+}
+
+header {
+  background-color: #fff;
+  width: 100%;
+  height: 100px;
+  border-bottom: 1px solid #f2f3f8;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  z-index: 9999;
+  top: 0;
+  position: fixed;
+  .logo {
+    padding: 2%;
+  }
+  .nav-manu {
+    display: inline-block;
+    float: right;
+    flex: 3;
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+  }
+  .nav-manu ul {
+    float: right;
+  }
+  .nav-manu ul li {
+    display: inline-block;
+    margin: 0 -2px;
+  }
+  .nav-manu ul li a {
+    line-height: 55px;
+    padding: 0 20px;
+    display: block;
+    text-transform: uppercase;
+    color: #041531;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 14px;
+  }
+
+  .nav-leftside ul {
+    float: right;
+    padding-right: 25%;
+  }
+  .nav-leftside ul li {
+    display: inline-block;
+    position: relative;
+  }
+  .nav-leftside ul li a {
+    line-height: 55px;
+    padding: 0 20px;
+    display: block;
+    text-transform: uppercase;
+    color: #041531;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 16px;
+  }
+  .cart-item {
+    position: absolute;
+    left: 27px;
+    top: 12px;
+    background-color: #43a038;
+    width: 15px;
+    height: 15px;
+    box-shadow: 0px 0px 10px #ccc;
+    font-size: 10px;
+    line-height: 15px;
+    text-align: center;
+    border-radius: 50px;
+    color: #fff;
+  }
+}
+
+/*-- cart css --*/
+.cart-body {
+  background: #fff;
+  border-left: 1px solid #f2f3f8;
+  border-right: 1px solid #f2f3f8;
+  border-bottom: 1px solid #f2f3f8;
+  display: none;
+  width: 350px;
+  position: absolute;
+  right: 30px;
+  top: 107px;
+  -webkit-transition: all 0.2s linear;
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+}
+.shrink .cart-body {
+  top: 77px;
+}
+.top-arrow {
+  position: absolute;
+  top: -25px;
+  right: 60px;
+  color: #fff;
+  font-size: 30px;
+}
+.inner-cart-body {
+  padding: 15px 0;
+}
+.cart-list {
+  float: left;
+  width: 100%;
+  height: 60px;
+  margin-bottom: 10px;
+  display: table;
+  border-bottom: 1px solid #eee;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.cart-list img {
+  display: table-cell;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #eee;
+}
+.cart-name-price {
+  display: table-cell;
+  vertical-align: top;
+  padding-left: 10px;
+  width: 80%;
+}
+.cart-name-price h4 {
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+}
+.cart-name-price h4 a {
+  float: right;
+  font-weight: 400;
+  font-size: 15px;
+  margin-top: 13px;
+  color: #041531;
+}
+.cart-name-price span {
+  font-weight: 400;
+  font-size: 15px;
+}
+.carthome-total {
+  padding: 0 15px;
+}
+.carthome-total h5 {
+  font-size: 15px;
+  text-transform: uppercase;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+.carthome-total h5 span {
+  float: right;
+  color: #555;
+  font-weight: 400;
+}
+
+.mr-20 {
+  margin-right: 20px !important;
+}
+.mr-10 {
+  margin-right: 10px !important;
+}
+.m-10 {
+  margin: 10px !important;
 }

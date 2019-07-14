@@ -1,26 +1,74 @@
-<div  fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-between" fxLayoutGap="30px" class=" product-create mat-elevation-z1">
+<div
+  fxLayout="row"
+  fxLayout.lt-md="column"
+  fxLayoutAlign="space-between"
+  fxLayoutGap="30px"
+  class=" product-create mat-elevation-z1"
+>
+  <form fxLayout="column" style="width: 100%" [formGroup]="productForm">
+    <mat-form-field fxFlex class="example-full-width">
+      <input
+        formControlName="ProductName"
+        matInput
+        placeholder="Product Name"
+      />
+    </mat-form-field>
+    <mat-form-field fxFlex class="example-full-width">
+      <input
+        matInput
+        formControlName="ProductShortCode"
+        placeholder="Product ShortCode"
+      />
+    </mat-form-field>
+    <mat-form-field fxFlex class="example-full-width">
+      <mat-select formControlName="Category">
+        <mat-option
+          *ngFor="let productCategory of productCategoryDropDown"
+          [value]="productCategory.key"
+        >
+          {{ productCategory.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field fxFlex class="example-full-width">
+      <input matInput formControlName="Price" placeholder="Price" />
+    </mat-form-field>
 
-    <form fxLayout="column" style="width: 100%">
-      
-          <mat-form-field  fxFlex  class="example-full-width">
-              <input matInput placeholder="Product Name" >
-            </mat-form-field>
-          <mat-form-field  fxFlex  class="example-full-width">
-              <input matInput placeholder="Product ShortCode" >
-            </mat-form-field>
-          <mat-form-field  fxFlex  class="example-full-width">
-              <input matInput placeholder="Price" >
-            </mat-form-field>
-     
-      
-        <mat-form-field class="example-full-width" fxFlex>
-          <textarea matInput placeholder="Description"></textarea>
-        </mat-form-field>
-        <mat-form-field  fxFlex  class="example-full-width">
-          <input matInput placeholder="ImageUrl" >
-        </mat-form-field>
-        <mat-form-field  fxFlex  class="example-full-width">
-          <input matInput placeholder="Origin" >
-        </mat-form-field>
-      </form>
+    <mat-form-field class="example-full-width" fxFlex>
+      <textarea
+        matInput
+        formControlName="Description"
+        placeholder="Description"
+      ></textarea>
+    </mat-form-field>
+    <mat-form-field fxFlex class="example-full-width">
+      <input matInput formControlName="ImageUrl" placeholder="ImageUrl" />
+    </mat-form-field>
+    <mat-form-field fxFlex class="example-full-width">
+      <input
+        matInput
+        formControlName="CreatedDate"
+        [matDatepicker]="picker"
+        placeholder="Choose a date"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field fxFlex class="example-full-width">
+      <input matInput formControlName="Origin" placeholder="Origin" />
+    </mat-form-field>
+    <div fxFlex class="example-full-width">
+      <button (click)="cancel()" mat-raised-button class="mr-20">Cancel</button>
+      <button
+        class="mr-20"
+        mat-flat-button
+        (click)="submit()"
+        [disabled]="productForm.invalid"
+        color="primary"
+      >
+        Save
+      </button>
+      <i *ngIf="submitForm" class="fa  fa-spinner fa-spin"></i>
+    </div>
+  </form>
 </div>

@@ -7,9 +7,12 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatSelectModule } from "@angular/material/select";
+import { MatButtonModule } from "@angular/material/button";
+import { HttpClientModule } from "@angular/common/http";
+import { AppDataTableComponent } from './components/app-data-table/app-data-table.component';
 @NgModule({
-  declarations: [ProductCardComponent],
+  declarations: [ProductCardComponent, AppDataTableComponent],
   imports: [
     CommonModule,
     MatCardModule,
@@ -17,7 +20,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
-    MatDatepickerModule
+    MatButtonModule,
+    MatSelectModule,
+    HttpClientModule
   ],
   exports: [
     ProductCardComponent,
@@ -25,7 +30,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
-    MatDatepickerModule
+    MatButtonModule,
+    MatSelectModule
   ],
   providers: [ProductService]
 })

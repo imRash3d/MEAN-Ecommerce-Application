@@ -1,0 +1,44 @@
+<header
+  fxLayout="row"
+  fxLayoutAlign="space-between"
+  fxLayoutGap="30px"
+  fxFlex="25"
+>
+  <div class="container">
+    <div class="row">
+      <div class="logo" fxLayout="column" fxFlex="30">
+        <img
+          src="http://www.vasterad.com/themes/trizzy/images/logo.png"
+          alt=""
+        />
+      </div>
+      <div class="nav-manu" fxLayout="column" fxFlex="60">
+        <ul class="nav-list">
+          <li>
+            <a routerLink="" class="active-menu">
+              Home
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/products']">Products </a>
+          </li>
+          <li>
+            <a [routerLink]="['/my-cart']">Carts </a>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-leftside" fxLayout="column" fxFlex="10">
+        <ul class="nav-list">
+          <li>
+            <a class="cart-bar">
+              <i class="fa fa-shopping-bag"></i>
+              <span class="cart-item">1</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- 
+      <app-cart-view-toggle></app-cart-view-toggle> -->
+    </div>
+  </div>
+</header>

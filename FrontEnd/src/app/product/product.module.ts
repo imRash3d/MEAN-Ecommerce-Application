@@ -5,6 +5,9 @@ import { ProductDetailsComponent } from "./components/product-details/product-de
 import { RouterModule, Routes } from "@angular/router";
 import { SharedModulesModule } from "../shared-data/shared-modules.module";
 import { ProductCreateComponent } from "./components/product-create/product-create.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
 const routes: Routes = [
   {
     path: "",
@@ -25,6 +28,13 @@ const routes: Routes = [
     ProductDetailsComponent,
     ProductCreateComponent
   ],
-  imports: [CommonModule, RouterModule.forChild(routes), SharedModulesModule]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    SharedModulesModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ]
 })
 export class ProductModule {}

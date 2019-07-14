@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { ProductService } from "../shared-data/services/product.service";
 import { Subscription } from "rxjs";
-import { Product } from "../shared-data/models/product.model";
+import { Product } from "src/app/shared-data/models/product.model";
+import { ProductService } from "src/app/shared-data/services/product.service";
 
 @Component({
   selector: "app-dashboard",
