@@ -1,3 +1,17 @@
-<p>
-  product works!
-</p>
+<div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-between" fxLayoutGap="30px"
+    class=" product-list-data-table mat-elevation-z1">
+    <app-data-table [columns]="columns" [loadingIndicator]="loadingIndicator" [rows]="rows"></app-data-table>
+
+    <ng-template #headerTemplate let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+
+        <span (click)="sort()">
+            {{column.name }}
+        </span>
+
+    </ng-template>
+    <ng-template #actionTemplate let-row="row" let-value="value" ngx-datatable-cell-template>
+        <div class="ml-32">
+            <div class="mat-body-1 mb-4">{{row.Category}}</div>
+        </div>
+    </ng-template>
+</div>

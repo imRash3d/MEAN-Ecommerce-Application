@@ -11,6 +11,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
 import { HttpClientModule } from "@angular/common/http";
 import { AppDataTableComponent } from './components/app-data-table/app-data-table.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 @NgModule({
   declarations: [ProductCardComponent, AppDataTableComponent],
   imports: [
@@ -22,16 +23,19 @@ import { AppDataTableComponent } from './components/app-data-table/app-data-tabl
     MatFormFieldModule,
     MatButtonModule,
     MatSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxDatatableModule
   ],
   exports: [
     ProductCardComponent,
+    AppDataTableComponent,
     FlexLayoutModule,
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxDatatableModule
   ],
   providers: [ProductService]
 })
