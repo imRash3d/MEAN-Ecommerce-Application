@@ -136,9 +136,13 @@ export class ProductService {
     return this.http.get(this.API_URL + `/${productId}`);
   }
 
-  deleteProduct() {}
+  deleteProduct(productId) {
+    return this.http.delete(this.API_URL + `/${productId}`);
+  }
 
-  updateProduct() {}
+  updateProduct(productId, data) {
+    return this.http.put(this.API_URL + `/${productId}`, data);
+  }
 
   createProduct(productData) {
     return this.http.post(this.API_URL, productData);

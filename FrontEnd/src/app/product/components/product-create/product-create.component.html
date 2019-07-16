@@ -1,3 +1,9 @@
+<div fxLayout="row" fxLayoutGap="30px">
+  <button class="mr-20" mat-flat-button color="primary">
+    Add New
+  </button>
+</div>
+
 <div
   fxLayout="row"
   fxLayout.lt-md="column"
@@ -58,7 +64,9 @@
       <input matInput formControlName="Origin" placeholder="Origin" />
     </mat-form-field>
     <div fxFlex class="example-full-width">
-      <button (click)="cancel()" mat-raised-button class="mr-20">Cancel</button>
+      <button (click)="backToList()" mat-raised-button class="mr-20">
+        Cancel
+      </button>
       <button
         class="mr-20"
         mat-flat-button

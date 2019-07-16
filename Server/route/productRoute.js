@@ -68,7 +68,10 @@ router.put("/:id", (req, res, next) => {
     .then(data =>
       res.status(201).json({
         messge: "Product updated successfully",
-        data
+        result: {
+          data: updatedProduct,
+          success: true
+        }
       })
     )
     .catch(err => {
@@ -83,7 +86,10 @@ router.delete("/:id", (req, res, next) => {
   Product.findByIdAndRemove(id)
     .then(data =>
       res.status(201).json({
-        messge: "Product Deleted"
+        messge: "Product Deleted Successfully",
+        result: {
+          success: true
+        }
       })
     )
     .catch(err => {

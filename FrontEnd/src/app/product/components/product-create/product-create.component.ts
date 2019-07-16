@@ -17,6 +17,7 @@ export class ProductCreateComponent implements OnInit {
   submitForm = false;
   subscriptionList: Subscription[] = [];
   productId: string;
+  onEdit: boolean;
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -29,60 +30,80 @@ export class ProductCreateComponent implements OnInit {
     console.log(this.activatedRoute);
     this.subscriptionList.push(
       this.activatedRoute.params.subscribe(param => {
+        // console.log(param);
         if (param["productId"]) {
           this.productId = param["productId"];
           this.getProductData();
+          this.onEdit = true;
         }
       })
     );
     this.initFrom();
   }
-  cancel() {
-    this.router.navigate(["./products"]);
+  backToList() {
+    setTimeout(() => {
+      this.router.navigate(["./products"]);
+    }, 300);
   }
 
-  initFrom() {
+  initFrom(data?) {
     this.productForm = this.fb.group({
-      ProductName: ["", Validators.required],
-      ProductShortCode: ["", Validators.required],
+      ProductName: [data ? data.ProductName : "", Validators.required],
+      ProductShortCode: [
+        data ? data.ProductShortCode : "",
+        Validators.required
+      ],
       Category: [this.productCategoryDropDown[0].key, Validators.required],
-      Price: ["", Validators.required],
-      Description: ["", Validators.required],
-      ImageUrl: ["", Validators.required],
+      Price: [data ? data.Price : "", Validators.required],
+      Description: [data ? data.Description : "", Validators.required],
+      ImageUrl: [data ? data.ImageUrl : "", Validators.required],
       IsBestAchived: false,
-      CreatedDate: ["", Validators.required],
-      Origin: ["", Validators.required]
+      CreatedDate: [data ? data.CreatedDate : "", Validators.required],
+      Origin: [data ? data.Origin : "", Validators.required]
     });
   }
 
   submit() {
     // console.log(this.productForm.value);
     this.submitForm = true;
-    this.productService
-      .createProduct(this.productForm.value)
-      .subscribe(response => {
-        //  console.log(response);
-        if (response && response["result"]["success"] === true) {
-          this.commonService.showMessage(
-            "success",
-            "Product created successfully"
-          );
-          this.productForm.reset();
-        } else {
-          this.commonService.showMessage(
-            "error",
-            "Product can not be  created"
-          );
-        }
-        this.submitForm = false;
-      });
+    if (this.onEdit) {
+      this.productService
+        .updateProduct(this.productId, this.productForm.value)
+        .subscribe(response => {
+          //  console.log(response);
+          if (response && response["result"]["success"] === true) {
+            this.showMessage("success", "Product updated successfully");
+            this.backToList();
+          } else {
+            this.showMessage("error", "Product can not be  created");
+          }
+          this.submitForm = false;
+        });
+    } else {
+      this.productService
+        .createProduct(this.productForm.value)
+        .subscribe(response => {
+          //  console.log(response);
+          if (response && response["result"]["success"] === true) {
+            this.showMessage("success", "Product  created successfully");
+            this.backToList();
+          } else {
+            this.showMessage("error", "Product can not be  created");
+          }
+          this.submitForm = false;
+        });
+    }
   }
 
+  showMessage(type, message: string) {
+    this.commonService.showMessage(type, message);
+  }
   getProductData() {
-    // this.subscriptionList.push(
-    //   this.productService.getProductById(this.productId).subscribe(response => {
-    //     console.log(response);
-    //   })
-    // );
+    this.subscriptionList.push(
+      this.productService.getProductById(this.productId).subscribe(response => {
+        console.log(response["data"]);
+        this.initFrom(response["data"]);
+      })
+    );
   }
 }

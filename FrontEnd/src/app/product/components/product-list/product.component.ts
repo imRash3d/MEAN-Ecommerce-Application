@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
 import { ProductService } from "src/app/shared-data/services/product.service";
 import { Router } from "@angular/router";
 import { Product } from "src/app/shared-data/models/product.model";
+import { CommonService } from "./../../../shared-data/services/common.service";
 
 @Component({
   selector: "app-product",
@@ -14,17 +15,29 @@ export class ProductComponent implements OnInit {
   @ViewChild("headerTemplate") headerTemplate: TemplateRef<any>;
   columns = [];
   @ViewChild("actionTemplate") actionTemplate: TemplateRef<any>;
+  @ViewChild("imageTemplate") imageTemplate: TemplateRef<any>;
   loadingIndicator: boolean;
-  constructor(private router: Router, private proS: ProductService) {}
+  constructor(
+    private router: Router,
+    private productService: ProductService,
+    private commonService: CommonService
+  ) {}
 
   ngOnInit() {
     console.log(this.headerTemplate);
     this.columns = [
       {
+        name: "Image",
+        prop: "ImageUrl",
+        headerTemplate: this.headerTemplate,
+        cellTemplate: this.imageTemplate,
+        width: 300,
+        draggable: false
+      },
+      {
         name: "Category",
         prop: "Category",
         headerTemplate: this.headerTemplate,
-
         width: 300,
         draggable: false
       },
@@ -43,6 +56,13 @@ export class ProductComponent implements OnInit {
         draggable: false
       },
       {
+        name: "Price",
+        prop: "Price",
+        headerTemplate: this.headerTemplate,
+        width: 300,
+        draggable: false
+      },
+      {
         name: "Actions",
         prop: "Actions",
         headerTemplate: this.headerTemplate,
@@ -51,10 +71,15 @@ export class ProductComponent implements OnInit {
         draggable: false
       }
     ];
+
+    this.getProducts();
+  }
+
+  getProducts() {
     this.loadingIndicator = true;
-    this.proS.getProducts().subscribe(res => {
+    this.productService.getProducts().subscribe(res => {
       console.log(res);
-      const data = res["data"]
+      const data = res["data"];
       this.rows = data;
       this.loadingIndicator = false;
       // console.log(this.rows);
@@ -70,6 +95,20 @@ export class ProductComponent implements OnInit {
 
   navigateToEdit(product: Product) {
     // debugger;
-    this.router.navigate([`products/edit/${product._id}` , {data:product} ]);
+    this.router.navigate([`products/edit/${product._id}`]);
+  }
+
+  delete(product: Product) {
+    this.productService.deleteProduct(product._id).subscribe(response => {
+      if (response && response["result"]["success"] === true) {
+        this.commonService.showMessage(
+          "success",
+          "Product deleted successfully"
+        );
+        this.rows = this.rows.filter(_product => _product._id !== product._id);
+      } else {
+        this.commonService.showMessage("error", "Product can not be  deleted");
+      }
+    });
   }
 }

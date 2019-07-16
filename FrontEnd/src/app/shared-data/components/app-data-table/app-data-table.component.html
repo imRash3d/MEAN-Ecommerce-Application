@@ -1,8 +1,16 @@
 <div *ngIf="rows.length">
-
-  <ngx-datatable #myTable class="material" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-    [loadingIndicator]="loadingIndicator" [rowHeight]="50" [scrollbarV]="true" (page)='setPage($event)' [rows]="rows"
-    [columns]="columns">
+  <ngx-datatable
+    #myTable
+    class="material"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [loadingIndicator]="loadingIndicator"
+    [rowHeight]="100"
+    [scrollbarV]="true"
+    (page)="setPage($event)"
+    [rows]="rows"
+    [columns]="columns"
+  >
   </ngx-datatable>
-
 </div>

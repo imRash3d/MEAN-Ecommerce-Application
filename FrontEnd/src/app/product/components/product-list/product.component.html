@@ -3,17 +3,23 @@
     <app-data-table [columns]="columns" [loadingIndicator]="loadingIndicator" [rows]="rows"></app-data-table>
 
     <ng-template #headerTemplate let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-
         <span (click)="sort()">
             {{column.name }}
         </span>
-
+    </ng-template>
+    <ng-template #imageTemplate let-row="row" let-value="value" ngx-datatable-cell-template>
+        <div class="ml-32">
+            <div class="mat-body-1 mb-4">
+                <img [src]="row.ImageUrl" alt="">
+               
+            </div>
+        </div>
     </ng-template>
     <ng-template #actionTemplate let-row="row" let-value="value" ngx-datatable-cell-template>
         <div class="ml-32">
             <div class="mat-body-1 mb-4">
                 <span><i (click)="navigateToEdit(row)" class="fa icon fa-pencil mr-20"></i></span>
-                <span><i class="fa icon fa-times"></i></span>
+                <span><i  (click)=delete(row)  class="fa icon fa-times"></i></span>
                
             </div>
         </div>

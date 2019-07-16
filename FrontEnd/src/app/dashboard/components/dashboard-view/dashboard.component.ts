@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   getProductList() {
     this.subscriptionList.push(
       this.productService.getProducts().subscribe(response => {
-        this.products = response;
+        this.products = response['data'];
       })
     );
   }
