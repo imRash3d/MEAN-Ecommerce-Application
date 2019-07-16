@@ -12,7 +12,9 @@
     <ng-template #actionTemplate let-row="row" let-value="value" ngx-datatable-cell-template>
         <div class="ml-32">
             <div class="mat-body-1 mb-4">
-                <button>Edit </button>
+                <span><i (click)="navigateToEdit(row)" class="fa icon fa-pencil mr-20"></i></span>
+                <span><i class="fa icon fa-times"></i></span>
+               
             </div>
         </div>
     </ng-template>

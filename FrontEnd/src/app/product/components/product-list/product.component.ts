@@ -1,5 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
 import { ProductService } from "src/app/shared-data/services/product.service";
+import { Router } from "@angular/router";
+import { Product } from "src/app/shared-data/models/product.model";
 
 @Component({
   selector: "app-product",
@@ -13,7 +15,7 @@ export class ProductComponent implements OnInit {
   columns = [];
   @ViewChild("actionTemplate") actionTemplate: TemplateRef<any>;
   loadingIndicator: boolean;
-  constructor(private proS: ProductService) {}
+  constructor(private router: Router, private proS: ProductService) {}
 
   ngOnInit() {
     console.log(this.headerTemplate);
@@ -51,13 +53,8 @@ export class ProductComponent implements OnInit {
     ];
     this.loadingIndicator = true;
     this.proS.getProducts().subscribe(res => {
-      const data = res.map(response => {
-        return {
-          Category: response.Category,
-          ProductName: response.ProductName,
-          ProductShortCode: response.ProductShortCode
-        };
-      });
+      console.log(res);
+      const data = res["data"]
       this.rows = data;
       this.loadingIndicator = false;
       // console.log(this.rows);
@@ -69,5 +66,10 @@ export class ProductComponent implements OnInit {
       // };
       // this.page = page;
     });
+  }
+
+  navigateToEdit(product: Product) {
+    // debugger;
+    this.router.navigate([`products/edit/${product._id}` , {data:product} ]);
   }
 }
