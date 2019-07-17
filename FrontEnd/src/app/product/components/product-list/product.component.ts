@@ -31,21 +31,14 @@ export class ProductComponent implements OnInit {
         prop: "ImageUrl",
         headerTemplate: this.headerTemplate,
         cellTemplate: this.imageTemplate,
-        width: 300,
-        draggable: false
-      },
-      {
-        name: "Category",
-        prop: "Category",
-        headerTemplate: this.headerTemplate,
-        width: 300,
+        width: 200,
         draggable: false
       },
       {
         name: "ProductName",
         prop: "ProductName",
         headerTemplate: this.headerTemplate,
-        width: 300,
+        width: 400,
         draggable: false
       },
       {
@@ -58,6 +51,13 @@ export class ProductComponent implements OnInit {
       {
         name: "Price",
         prop: "Price",
+        headerTemplate: this.headerTemplate,
+        width: 300,
+        draggable: false
+      },
+      {
+        name: "Category",
+        prop: "Category",
         headerTemplate: this.headerTemplate,
         width: 300,
         draggable: false
@@ -110,5 +110,13 @@ export class ProductComponent implements OnInit {
         this.commonService.showMessage("error", "Product can not be  deleted");
       }
     });
+  }
+
+  navigateToCreate() {
+    this.router.navigate([`products/create`]);
+  }
+
+  view(product: Product) {
+    this.router.navigate([`products/detail/` + product._id]);
   }
 }
