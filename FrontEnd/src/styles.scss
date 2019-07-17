@@ -125,8 +125,11 @@ img {
 }
 .cart-btn span {
   cursor: pointer;
-  margin: 0 10px;
-  display: none;
+ // margin: 0 10px;
+  display: inline-block;
+  margin: 5px 14px;
+  padding: 7px 10px;
+  // display: none;
 }
 
 .modal {

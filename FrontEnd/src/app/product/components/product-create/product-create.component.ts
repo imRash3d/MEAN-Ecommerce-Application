@@ -67,32 +67,40 @@ export class ProductCreateComponent implements OnInit {
     // console.log(this.productForm.value);
     this.submitForm = true;
     if (this.onEdit) {
-      this.productService
-        .updateProduct(this.productId, this.productForm.value)
-        .subscribe(response => {
-          //  console.log(response);
-          if (response && response["result"]["success"] === true) {
-            this.showMessage("success", "Product updated successfully");
-            this.backToList();
-          } else {
-            this.showMessage("error", "Product can not be  created");
-          }
-          this.submitForm = false;
-        });
+      this.editProduct();
     } else {
-      this.productService
-        .createProduct(this.productForm.value)
-        .subscribe(response => {
-          //  console.log(response);
-          if (response && response["result"]["success"] === true) {
-            this.showMessage("success", "Product  created successfully");
-            this.backToList();
-          } else {
-            this.showMessage("error", "Product can not be  created");
-          }
-          this.submitForm = false;
-        });
+      this.createProduct();
     }
+  }
+
+  editProduct() {
+    this.productService
+      .updateProduct(this.productId, this.productForm.value)
+      .subscribe(response => {
+        //  console.log(response);
+        if (response && response["result"]["success"] === true) {
+          this.showMessage("success", "Product updated successfully");
+          this.backToList();
+        } else {
+          this.showMessage("error", "Product can not be  created");
+        }
+        this.submitForm = false;
+      });
+  }
+
+  createProduct() {
+    this.productService
+      .createProduct(this.productForm.value)
+      .subscribe(response => {
+        //  console.log(response);
+        if (response && response["result"]["success"] === true) {
+          this.showMessage("success", "Product  created successfully");
+          this.backToList();
+        } else {
+          this.showMessage("error", "Product can not be  created");
+        }
+        this.submitForm = false;
+      });
   }
 
   showMessage(type, message: string) {

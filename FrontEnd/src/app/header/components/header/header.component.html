@@ -30,15 +30,15 @@
       <div class="nav-leftside" fxLayout="column" fxFlex="10">
         <ul class="nav-list">
           <li>
-            <a class="cart-bar">
+            <a (click)="showCartView()" class="cart-bar icon">
               <i class="fa fa-shopping-bag"></i>
-              <span class="cart-item">1</span>
+              <span  class=" cart-item">{{totalQuantity}}</span>
             </a>
           </li>
         </ul>
       </div>
-      <!-- 
-      <app-cart-view-toggle></app-cart-view-toggle> -->
+      
+      <app-cart-view-toggle [cartItems]="cartItems" *ngIf="toggleCartView"></app-cart-view-toggle>
     </div>
   </div>
 </header>

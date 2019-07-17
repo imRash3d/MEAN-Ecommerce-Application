@@ -1,3 +1,9 @@
-<p>
-  my-cart works!
-</p>
+<section id="productSection">
+    <div class="container">
+        <div class="row">
+            <div class="product-card" *ngFor="let cart of cartItems">
+                <app-product-card [isCartProduct]="true" [product]="cart.product"></app-product-card>
+            </div>
+        </div>
+    </div>
+</section>
