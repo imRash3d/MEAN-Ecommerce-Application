@@ -1,27 +1,35 @@
-<div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-between" fxLayoutGap="30px" class="mat-elevation-z1 project-details"  >
+<div
+  *ngIf="product"
+  fxLayout="row"
+  fxLayout.lt-md="column"
+  fxLayoutAlign="space-between"
+  fxLayoutGap="30px"
+  class="mat-elevation-z1 project-details"
+>
   <div fxLayout="column" fxFlex="25">
-    <img src="https://i2.wp.com/paulnrogers.com/wp-content/uploads/2017/10/TangleTeezer.png?resize=900%2C434&ssl=1"
-      alt="">
+    <img [src]="product.ImageUrl" />
   </div>
   <div fxLayout="column" fxFlex="75">
-    <h2 class="sub-title">
-      Watch
-    </h2>
+    <div>
+      <h2 style="float: left" class="sub-title">
+        {{ product.Category }}
+      </h2>
+      <a class="back-btn icon" (click)="backToList()">
+        back
+      </a>
+    </div>
     <h4 class="title">
-      14 Megapixels. 18.0 x Optical Zoom. 3.0-inch LCD Screen. Full HD photos and 1280 x 720p HD movie capture. ISO
-      sensitivity ISO6400 at reduced resolution.
-
+      {{ product.ProductName }}
     </h4>
     <p>
-        14 Megapixels. 18.0 x Optical Zoom. 3.0-inch LCD Screen. Full HD photos and 1280 x 720p HD movie capture. ISO sensitivity ISO6400 at reduced resolution.
-        14 Megapixels. 18.0 x Optical Zoom. 3.0-inch LCD Screen. Full HD photos and 1280 x 720p HD movie capture. ISO sensitivity ISO6400 at reduced resolution.
-        14 Megapixels. 18.0 x Optical Zoom. 3.0-inch LCD Screen. Full HD photos and 1280 x 720p HD movie capture. ISO sensitivity ISO6400 at reduced resolution.
-        14 Megapixels. 18.0 x Optical Zoom. 3.0-inch LCD Screen. Full HD photos and 1280 x 720p HD movie capture. ISO sensitivity ISO6400 at reduced resolution.
+      {{ product.Description }}
     </p>
-    <p><b>Price : $300</b></p>
-    <a class="cart-btn">
-        <span class=" cart-qty-update">+ </span><button class="add-to-cart">Add to cart </button> <span
-          class="cart-qty-update">- </span>
-      </a>
+    <p>
+      <b>Price : $ {{ product.Price }} </b>
+    </p>
   </div>
+</div>
+
+<div class="row" *ngIf="!product">
+  <app-loader></app-loader>
 </div>

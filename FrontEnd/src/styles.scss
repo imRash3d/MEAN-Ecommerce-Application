@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import "~ngx-toastr/toastr";
-@import '~@swimlane/ngx-datatable/release/index.css';
-@import '~@swimlane/ngx-datatable/release/themes/material.css';
-@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+@import "~@swimlane/ngx-datatable/release/index.css";
+@import "~@swimlane/ngx-datatable/release/themes/material.css";
+@import "~@swimlane/ngx-datatable/release/assets/icons.css";
 html,
 body {
   height: 100%;
@@ -125,7 +125,7 @@ img {
 }
 .cart-btn span {
   cursor: pointer;
- // margin: 0 10px;
+  // margin: 0 10px;
   display: inline-block;
   margin: 5px 14px;
   padding: 7px 10px;
@@ -446,6 +446,20 @@ header {
   margin: 10px !important;
 }
 
+.back-btn {
+  background: #3acf87;
+  border-radius: 23px;
+  // margin: 0 31%;
+  color: #fff;
+  padding: 12px 23px;
+  width: 124px;
+  text-align: center;
+  float: right;
+}
+
+app-loader {
+  width: 100%;
+}
 .icon {
   cursor: pointer;
 }

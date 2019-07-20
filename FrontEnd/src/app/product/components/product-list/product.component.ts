@@ -3,7 +3,7 @@ import { ProductService } from "src/app/shared-data/services/product.service";
 import { Router } from "@angular/router";
 import { Product } from "src/app/shared-data/models/product.model";
 import { CommonService } from "./../../../shared-data/services/common.service";
-import { CartService } from 'src/app/shared-data/services/cart.service';
+import { CartService } from "src/app/shared-data/services/cart.service";
 
 @Component({
   selector: "app-product",
@@ -22,7 +22,7 @@ export class ProductComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private commonService: CommonService,
-    private cartService:CartService
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -84,6 +84,7 @@ export class ProductComponent implements OnInit {
       const data = res["data"];
       this.rows = data;
       this.loadingIndicator = false;
+      this.rows.length = 5;
       // console.log(this.rows);
       // const page: Page = {
       //   pageNumber: 0,
@@ -102,7 +103,10 @@ export class ProductComponent implements OnInit {
 
   delete(product: Product) {
     if (this.isProductAlreadyInCart(product._id) > -1) {
-      this.commonService.showMessage("error", "Product already in Cart . Product  can not be  deleted");
+      this.commonService.showMessage(
+        "error",
+        "Product already in Cart . Product  can not be  deleted"
+      );
     } else {
       this.productService.deleteProduct(product._id).subscribe(response => {
         if (response && response["result"]["success"] === true) {
@@ -110,19 +114,22 @@ export class ProductComponent implements OnInit {
             "success",
             "Product deleted successfully"
           );
-          this.rows = this.rows.filter(_product => _product._id !== product._id);
+          this.rows = this.rows.filter(
+            _product => _product._id !== product._id
+          );
         } else {
-          this.commonService.showMessage("error", "Product can not be  deleted");
+          this.commonService.showMessage(
+            "error",
+            "Product can not be  deleted"
+          );
         }
       });
-
     }
-
   }
 
   isProductAlreadyInCart(productId) {
-   const isExist =  this.cartService.itemExistIncart(productId);
-   return isExist;
+    const isExist = this.cartService.itemExistIncart(productId);
+    return isExist;
   }
 
   navigateToCreate() {

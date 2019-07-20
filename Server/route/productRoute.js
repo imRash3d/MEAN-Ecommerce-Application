@@ -46,8 +46,9 @@ router.get("/:id", (req, res, next) => {
   Product.findById(id)
     .then(data =>
       res.status(201).json({
-        messge: "Found",
-        data
+        result: {
+          data
+        }
       })
     )
     .catch(err => {

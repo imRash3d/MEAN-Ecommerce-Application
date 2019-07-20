@@ -10,10 +10,16 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
 import { HttpClientModule } from "@angular/common/http";
-import { AppDataTableComponent } from './components/app-data-table/app-data-table.component';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { AppDataTableComponent } from "./components/app-data-table/app-data-table.component";
+import { NgxDatatableModule } from "@swimlane/ngx-datatable";
+import { AppLoaderComponent } from "./components/app-loader/app-loader.component";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 @NgModule({
-  declarations: [ProductCardComponent, AppDataTableComponent],
+  declarations: [
+    ProductCardComponent,
+    AppDataTableComponent,
+    AppLoaderComponent
+  ],
   imports: [
     CommonModule,
     MatCardModule,
@@ -24,7 +30,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     MatButtonModule,
     MatSelectModule,
     HttpClientModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     ProductCardComponent,
@@ -35,7 +42,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     MatFormFieldModule,
     MatButtonModule,
     MatSelectModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    MatProgressSpinnerModule,
+    AppLoaderComponent
   ],
   providers: [ProductService]
 })

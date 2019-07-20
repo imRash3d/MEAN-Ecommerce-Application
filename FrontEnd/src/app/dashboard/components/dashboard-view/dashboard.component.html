@@ -1,9 +1,12 @@
 <section id="productSection">
-    <div class="container">
-        <div class="row">
-            <div class="product-card" *ngFor="let product of products">
-                <app-product-card [product]="product"></app-product-card>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="product-card" *ngFor="let product of products">
+        <app-product-card [product]="product"></app-product-card>
+      </div>
     </div>
+    <div class="row" *ngIf="!products.length">
+      <app-loader></app-loader>
+    </div>
+  </div>
 </section>

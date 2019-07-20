@@ -7,10 +7,14 @@
     [footerHeight]="50"
     [loadingIndicator]="loadingIndicator"
     [rowHeight]="100"
-    [scrollbarV]="true"
     (page)="setPage($event)"
     [rows]="rows"
     [columns]="columns"
+    [externalPaging]="true"
+    [limit]="10"
+    [offset]="0"
+    [count]="13"
+    [reorderable]="reorderable"
   >
   </ngx-datatable>
 </div>

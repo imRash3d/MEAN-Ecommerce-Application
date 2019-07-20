@@ -55,7 +55,7 @@ export class ProductCreateComponent implements OnInit {
       ],
       Category: [this.productCategoryDropDown[0].key, Validators.required],
       Price: [data ? data.Price : "", Validators.required],
-      Description: [data ? data.Description : "", Validators.required],
+      Description: [data ? data.Description : ""],
       ImageUrl: [data ? data.ImageUrl : "", Validators.required],
       IsBestAchived: false,
       CreatedDate: [data ? data.CreatedDate : "", Validators.required],
@@ -109,8 +109,7 @@ export class ProductCreateComponent implements OnInit {
   getProductData() {
     this.subscriptionList.push(
       this.productService.getProductById(this.productId).subscribe(response => {
-        console.log(response["data"]);
-        this.initFrom(response["data"]);
+        this.initFrom(response["result"]["data"]);
       })
     );
   }
