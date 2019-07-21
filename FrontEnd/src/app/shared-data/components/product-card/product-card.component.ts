@@ -48,13 +48,16 @@ export class ProductCardComponent implements OnInit {
     });
   }
   getUrl(src) {
-    console.log(src)
-  // sthis.noImageUrlFound;
+    console.log(src);
+    // sthis.noImageUrlFound;
   }
   updateCart(type: string) {
     this.cartService.updateQuantity(type, this.product);
   }
   deleteCart() {
     this.cartService.deleteCartItems(this.product._id);
+  }
+  onErrorLoadingImg() {
+    this.product.ImageUrl = this.noImageUrlFound;
   }
 }

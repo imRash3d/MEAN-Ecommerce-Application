@@ -1,9 +1,17 @@
 <section id="productSection">
-    <div class="container">
-        <div class="row">
-            <div class="product-card" *ngFor="let cart of cartItems">
-                <app-product-card [isCartProduct]="true" [product]="cart.product"></app-product-card>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="product-card" *ngFor="let cart of cartItems">
+        <app-product-card
+          [isCartProduct]="true"
+          [product]="cart.product"
+        ></app-product-card>
+      </div>
     </div>
+    <div class="row" *ngIf="!cartItems.length">
+      <h3 class="title" style="text-align: center; width: 100%">
+        Your Cart Is Empty
+      </h3>
+    </div>
+  </div>
 </section>

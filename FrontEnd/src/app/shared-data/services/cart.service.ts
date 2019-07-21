@@ -30,19 +30,14 @@ export class CartService {
   }
 
   deleteCartItems(productId) {
-    let  cartItems = this.getCartItemsFromStorage();
-    cartItems =   cartItems.filter(_cartProduct => _cartProduct.product._id !== productId);
+    let cartItems = this.getCartItemsFromStorage();
+    cartItems = cartItems.filter(
+      _cartProduct => _cartProduct.product._id !== productId
+    );
     this.saveCartInLocalStorage(cartItems);
   }
   updateQuantity(type, product: Product) {
-    let cartItems = [];
-    cartItems = this.getCartItemsFromStorage();
-    // this.getCartItems().subscribe(response => {
-    //   cartItems = response;
-    // });
-    const cartObj: Cart = cartItems.find(
-      _cartProduct => _cartProduct.product._id === product._id
-    );
+    const { cartObj, cartItems } = this.getSelectedCartObj(product._id);
 
     if (type === "plus") {
       cartObj.quantity++;
@@ -67,8 +62,30 @@ export class CartService {
   }
 
   itemExistIncart(productId) {
-    let  cartItems = this.getCartItemsFromStorage();
-    const isExist =   cartItems.findIndex(_cartProduct => _cartProduct.product._id === productId);
+    let cartItems = this.getCartItemsFromStorage();
+    const isExist = cartItems.findIndex(
+      _cartProduct => _cartProduct.product._id === productId
+    );
     return isExist;
+  }
+  updateCartDataByProductId(productId, product: Product) {
+    let { cartObj, cartItems } = this.getSelectedCartObj(productId);
+    if (cartObj) {
+      product["_id"] = productId;
+      cartObj.product = product;
+      this.saveCartInLocalStorage(cartItems);
+    }
+  }
+
+  getSelectedCartObj(productId) {
+    let cartItems = [];
+    cartItems = this.getCartItemsFromStorage();
+    // this.getCartItems().subscribe(response => {
+    //   cartItems = response;
+    // });
+    const cartObj: Cart = cartItems.find(
+      _cartProduct => _cartProduct.product._id === productId
+    );
+    return { cartObj, cartItems };
   }
 }

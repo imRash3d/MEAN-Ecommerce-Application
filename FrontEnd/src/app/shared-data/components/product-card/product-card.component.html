@@ -1,20 +1,40 @@
 <mat-card class="example-card  mat-elevation-z1">
-  <i (click)="deleteCart()" *ngIf="isCartProduct" class="fa icon-remove icon fa-times"></i>
+  <i
+    (click)="deleteCart()"
+    *ngIf="isCartProduct"
+    class="fa icon-remove icon fa-times"
+  ></i>
   <div class="product-image">
-    {{noImageUrlFound}}
-    <img [src]="product.ImageUrl"  onerror="getUrl(this.src)" />
+    <img [src]="product.ImageUrl" (error)="onErrorLoadingImg()" />
   </div>
   <div class="product-info">
-    <h5> {{product.ProductName}} <br> <span>$ {{product.Price}}</span></h5>
+    <h5>
+      {{ product.ProductName }} <br />
+      <span>$ {{ product.Price }}</span>
+    </h5>
     <h6></h6>
     <a class="cart-btn">
-      <span *ngIf="quantity" (click)="updateCart('plus')" class=" cart-qty-update">+ </span>
-      <button  *ngIf="!quantity" (click)="addToCart()" class="add-to-cart">Add to cart </button>
-      <span  *ngIf="quantity" style="margin: 0;padding:0">{{quantity}}</span>
-       <span *ngIf="quantity" class="cart-qty-update" (click)="updateCart('minus')">- </span>
+      <span
+        *ngIf="quantity"
+        (click)="updateCart('plus')"
+        class=" cart-qty-update"
+        >+
+      </span>
+      <button *ngIf="!quantity" (click)="addToCart()" class="add-to-cart">
+        Add to cart
+      </button>
+      <span *ngIf="quantity" style="margin: 0;padding:0">{{ quantity }}</span>
+      <span
+        *ngIf="quantity"
+        class="cart-qty-update"
+        (click)="updateCart('minus')"
+        >-
+      </span>
     </a>
   </div>
   <div class="view-details">
-    <button (click)="navigateToDetails()" class="view-details-btn">View Details</button>
+    <button (click)="navigateToDetails()" class="view-details-btn">
+      View Details
+    </button>
   </div>
 </mat-card>

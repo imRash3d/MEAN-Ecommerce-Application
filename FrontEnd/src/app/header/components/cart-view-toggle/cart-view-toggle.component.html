@@ -5,12 +5,12 @@
       <img [src]="cart.product.ImageUrl" class="img-fluid" />
       <div class="cart-name-price">
         <h4>
-          {{cart.product.ProductName}}
+          {{ cart.product.ProductName }}
         </h4>
-        <span>${{cart.product.Price}}</span>
+        <span>${{ cart.product.Price }}</span>
+        <span style="margin-left: 60%"> x{{ cart.quantity }} </span>
       </div>
     </div>
-
 
     <!-- <div class="carthome-total w-100">
       <h5>Cart Total <span>${{totalPrice}}</span></h5>

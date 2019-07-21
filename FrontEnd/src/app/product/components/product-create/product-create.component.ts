@@ -5,6 +5,7 @@ import { ShopUpConfig } from "src/shopup-config/shop-up.confing";
 import { ProductService } from "./../../../shared-data/services/product.service";
 import { CommonService } from "./../../../shared-data/services/common.service";
 import { Subscription } from "rxjs";
+import { CartService } from "./../../../shared-data/services/cart.service";
 
 @Component({
   selector: "app-product-create",
@@ -23,7 +24,8 @@ export class ProductCreateComponent implements OnInit {
     private fb: FormBuilder,
     private productService: ProductService,
     private commonService: CommonService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -77,8 +79,13 @@ export class ProductCreateComponent implements OnInit {
     this.productService
       .updateProduct(this.productId, this.productForm.value)
       .subscribe(response => {
-        //  console.log(response);
+        console.log(response);
+
         if (response && response["result"]["success"] === true) {
+          this.cartService.updateCartDataByProductId(
+            this.productId,
+            this.productForm.value
+          );
           this.showMessage("success", "Product updated successfully");
           this.backToList();
         } else {
