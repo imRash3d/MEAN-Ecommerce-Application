@@ -1,11 +1,26 @@
 const router = require("express").Router();
 const Product = require("../model/Product");
 router.get("/", (req, res, next) => {
+  const filter = req.body.filter || '';
+  const sort = {
+    [req.body.sortKey || "_id"]: req.body.sortOrder || 1
+  };
+  const pageOptions = {
+    page: Number(req.query.page) || 0,
+    limit: Number(req.query.limit) || 10
+  }
   Product.find()
+  .where(filter)
+  .sort(sort)
+  .skip(pageOptions.page * pageOptions.limit)
+  .limit(pageOptions.limit)
     .then(data =>
-      res.status(201).json({
-        messge: "Found",
-        data
+      Product.collection.countDocuments(filter).then(totalCount => {
+        res.status(201).json({
+          messge: "Found",
+          data,
+          totalCount
+        })
       })
     )
     .catch(err => {

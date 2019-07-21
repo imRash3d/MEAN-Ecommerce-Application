@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { CartService } from "../../services/cart.service";
 import { CommonService } from "../../services/common.service";
 import { Cart } from "../../models/cart.model";
+import { ShopUpConfig } from "src/shopup-config/shop-up.confing";
 
 @Component({
   selector: "app-product-card",
@@ -13,7 +14,8 @@ import { Cart } from "../../models/cart.model";
 export class ProductCardComponent implements OnInit {
   @Input() product: Product;
   @Input() quantity: number;
-  @Input() isCartProduct:boolean;
+  @Input() isCartProduct: boolean;
+  noImageUrlFound = ShopUpConfig.NO_IMAGE_FOUND_URL;
   constructor(
     private cartService: CartService,
     private router: Router,
@@ -45,7 +47,10 @@ export class ProductCardComponent implements OnInit {
       }
     });
   }
-
+  getUrl(src) {
+    console.log(src)
+  // sthis.noImageUrlFound;
+  }
   updateCart(type: string) {
     this.cartService.updateQuantity(type, this.product);
   }

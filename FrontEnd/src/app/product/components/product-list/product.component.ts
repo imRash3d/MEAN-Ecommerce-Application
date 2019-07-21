@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { Product } from "src/app/shared-data/models/product.model";
 import { CommonService } from "./../../../shared-data/services/common.service";
 import { CartService } from "src/app/shared-data/services/cart.service";
+import { Page } from "src/app/shared-data/models/data-table.model";
 
 @Component({
   selector: "app-product",
@@ -18,6 +19,7 @@ export class ProductComponent implements OnInit {
   @ViewChild("actionTemplate") actionTemplate: TemplateRef<any>;
   @ViewChild("imageTemplate") imageTemplate: TemplateRef<any>;
   loadingIndicator: boolean;
+  pageConfig = new Page();
   constructor(
     private router: Router,
     private productService: ProductService,
@@ -73,26 +75,21 @@ export class ProductComponent implements OnInit {
         draggable: false
       }
     ];
-
+    this.pageConfig = {
+      pageNumber: 0,
+      limit: 10,
+    };
     this.getProducts();
   }
 
   getProducts() {
     this.loadingIndicator = true;
-    this.productService.getProducts().subscribe(res => {
+    this.productService.getProducts(this.pageConfig).subscribe(res => {
       console.log(res);
       const data = res["data"];
       this.rows = data;
       this.loadingIndicator = false;
-      this.rows.length = 5;
-      // console.log(this.rows);
-      // const page: Page = {
-      //   pageNumber: 0,
-      //   totalPages: 1,
-      //   totalElements: 9,
-      //   size: 3
-      // };
-      // this.page = page;
+      this.pageConfig.totalCount = res["totalCount"];
     });
   }
 
@@ -138,5 +135,10 @@ export class ProductComponent implements OnInit {
 
   view(product: Product) {
     this.router.navigate([`products/detail/` + product._id]);
+  }
+  onPageChange(pageInfo) {
+    console.log(pageInfo , this.pageConfig);
+    this.pageConfig.pageNumber = pageInfo['offset'];
+    this.getProducts();
   }
 }

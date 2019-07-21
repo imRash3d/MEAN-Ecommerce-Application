@@ -8,6 +8,7 @@ import { ProductCreateComponent } from "./components/product-create/product-crea
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
+import { AppDatatableModule } from "../packages/app-datatable/app-datatable.module";
 const routes: Routes = [
   {
     path: "",
@@ -38,7 +39,8 @@ const routes: Routes = [
     SharedModulesModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    AppDatatableModule
   ]
 })
 export class ProductModule {}

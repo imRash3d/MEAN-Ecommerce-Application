@@ -11,9 +11,9 @@
     [rows]="rows"
     [columns]="columns"
     [externalPaging]="true"
-    [limit]="10"
-    [offset]="0"
-    [count]="13"
+    [limit]="pageConfig.limit"
+    [offset]="pageConfig.pageNumber"
+    [count]="pageConfig.totalCount"
     [reorderable]="reorderable"
   >
   </ngx-datatable>

@@ -9,15 +9,11 @@ import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
-import { HttpClientModule } from "@angular/common/http";
-import { AppDataTableComponent } from "./components/app-data-table/app-data-table.component";
-import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { AppLoaderComponent } from "./components/app-loader/app-loader.component";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 @NgModule({
   declarations: [
     ProductCardComponent,
-    AppDataTableComponent,
     AppLoaderComponent
   ],
   imports: [
@@ -29,20 +25,16 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatFormFieldModule,
     MatButtonModule,
     MatSelectModule,
-    HttpClientModule,
-    NgxDatatableModule,
     MatProgressSpinnerModule
   ],
   exports: [
     ProductCardComponent,
-    AppDataTableComponent,
     FlexLayoutModule,
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
     MatSelectModule,
-    NgxDatatableModule,
     MatProgressSpinnerModule,
     AppLoaderComponent
   ],

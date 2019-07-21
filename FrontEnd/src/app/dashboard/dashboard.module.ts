@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModulesModule } from '../shared-data/shared-modules.module';
 import { DashboardComponent } from './components/dashboard-view/dashboard.component';
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 const routes: Routes = [
   {
     path: '',
@@ -19,7 +19,8 @@ export class AppRoutingModule { }
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModulesModule
+    SharedModulesModule,
+    InfiniteScrollModule
   ]
 })
 export class DashboardModule { }

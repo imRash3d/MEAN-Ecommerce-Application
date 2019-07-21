@@ -5,10 +5,11 @@ import {
   ViewChild,
   Input,
   OnChanges,
-  TemplateRef
+  Output,
+  EventEmitter
 } from "@angular/core";
-import { Page, CorporateEmployee } from "../../models/data-table.model";
-import { ProductService } from "../../services/product.service";
+
+import { ProductService } from "../../shared-data/services/product.service";
 
 @Component({
   selector: "app-data-table",
@@ -16,20 +17,16 @@ import { ProductService } from "../../services/product.service";
   styleUrls: ["./app-data-table.component.scss"]
 })
 export class AppDataTableComponent implements OnInit, AfterViewInit, OnChanges {
-  page = new Page();
   @Input() rows = [];
-  cache: any = {};
   @Input() columns = [];
   @ViewChild("myTable") table;
-
+  @Input() pageConfig;
   @Input() loadingIndicator: boolean;
-
+  @Output() onPageChange = new EventEmitter();
   constructor(private proS: ProductService) {}
 
   ngOnChanges() {}
-  ngOnInit() {
-    this.rows.length = 5;
-  }
+  ngOnInit() {}
   ngAfterViewInit() {}
 
   /**
@@ -37,8 +34,6 @@ export class AppDataTableComponent implements OnInit, AfterViewInit, OnChanges {
    * @param page The page to select
    */
   setPage(pageInfo) {
-    this.page.pageNumber = pageInfo.offset;
-    this.page.size = 5;
-    console.log("c");
+    this.onPageChange.emit(pageInfo);
   }
 }
